@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>SHEN Lin CV</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.8/jquery.fullPage.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link rel="icon" href="favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/cv.css">
+
+</head>
+<body>
+    <div id="fullpage">
+
+        <div id="intro" class="section">
+            <div class="avatar center-block">
+            </div>
+            <div class="center-block">
+                <p class="name">{{ name }}</p>
+                <h5 class="description">{{ description }}</h5>
+                <h5 class="email">{{ email }}</h5>
+            </div>
+        </div>
+
+
+
+        <div id="skills" class="section container-fluid">
+            <div class="row">
+                <h1 class="heading"> {{title}} </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-xs-12 col-xs-offset-1">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-2 col-xs-2" v-for="obj in switchButtons" v-bind:class="{ 'col-xs-offset-1': shouldOffset && obj.english === 'frontend' }">
+                            <button class="btn btn-default my-btn" v-on:click="switch(obj.english, $event)" v-bind:class="{ 'active': curTab === obj.english }">
+                                {{ obj.english }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-md-offset-0 col-sm-11 col-sm-offset-1 col-xs-12" style="max-width:500px;max-height:400px">
+                <div id="skillChart"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="experiences" class="section container-fluid">
+            <div class="row">
+                <h1 class="heading"> {{title}} </h1>
+            </div>
+            <div class="row">
+                <div class="experience" v-for="obj in expArray">
+                    <h2 class="row"> {{ obj.title }} </h2>
+                    <p class="row subject"> {{ obj.subject }} </p>
+                    <p class="row duration"> {{ obj.duration }} </p>
+                    <p class="row description"> {{ obj.description }} </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="educations" class="section">
+            <div class="row">
+                <h1 class="heading"> {{title}}  </h1>
+            </div>
+            <div class="row">
+                <div class="experience" v-for="obj in eduArray">
+                    <h2 class="row"> {{ obj.school }} </h2>
+                    <h4 class="row"> {{ obj.degree }} </h4>
+                    <p class="duration"> {{ obj.duration }} </p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="others" class="section container-fluid">
+            <div class="row">
+                <h1 class="heading"> Others </h1>
+            </div>
+            <div class="row biglink-container">
+                <a class="biglink" href="http://shenlinweb.com">My website</a>
+            </div>
+            <div class="row biglink-container">
+                <a class="biglink" href="http://github.com/shenlin192" target="_blank" rel="external">Github</a>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</body>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.8/jquery.fullPage.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js"></script>
+<script src="js/cv.js" charset="UTF-8"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74740676-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</html>

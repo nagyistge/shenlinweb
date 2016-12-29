@@ -1,0 +1,47 @@
+/* Global settings */
+* {
+    font-family: fantasy;
+}
+/* Correlation */
+#correlationTable {
+    border-collapse: collapse;
+}
+
+#bigCorrelation {
+    width: 500px;
+    height: 500px;
+}
+
+body{
+    text-align: center;
+}
+
+section{
+    margin:80px 20px;
+}
+
+td {
+    border: 1px solid black;
+}
+td:hover {
+    background: pink;
+}
+.chart {
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    margin: 2px;
+}
+.label {
+    font-family: fantasy;
+    font-size: 1em;
+    text-align: center;
+}
+
+.correlationChartContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}

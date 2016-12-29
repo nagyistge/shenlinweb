@@ -1,0 +1,374 @@
+/**
+ * Created by Daniel on 3/12/16.
+ */
+new Vue ({
+    el: '#intro',
+
+    data: {
+        avatarSrc: '',
+        name: 'SHEN Lin',
+        description: '一名执着的前端',
+        email: 'shenlin192@gmail.com'
+    },
+
+    ready: function() {
+        $('#fullpage').fullpage({
+            //Navigation
+            menu: '#menu',
+            lockAnchors: false,
+            anchors:['Welcome', 'Skill', 'Experience', 'Education', 'Other'],
+            navigation: true,
+            navigationPosition: 'left',
+            navigationTooltips: ['welcome', 'skills', 'experiences', 'education', 'others'],
+            showActiveTooltip: true,
+            slidesNavigation: true,
+            slidesNavPosition: 'bottom',
+
+            //Scrolling
+            css3: true,
+            scrollingSpeed: 700,
+            autoScrolling: true,
+            fitToSection: true,
+            fitToSectionDelay: 1000,
+            scrollBar: false,
+            easing: 'easeInOutCubic',
+            easingcss3: 'ease',
+            loopBottom: true,
+            loopTop: false,
+            loopHorizontal: true,
+            continuousVertical: false,
+            normalScrollElements: '#element1, .element2',
+            scrollOverflow: false,
+            touchSensitivity: 15,
+            normalScrollElementTouchThreshold: 5,
+
+            //Accessibility
+            keyboardScrolling: true,
+            animateAnchor: true,
+            recordHistory: true,
+
+            //Design
+            controlArrows: true,
+            verticalCentered: true,
+            resize : false,
+            paddingTop: '3em',
+            paddingBottom: '10px',
+            fixedElements: '#header, .footer',
+            responsiveWidth: 0,
+            responsiveHeight: 0,
+
+            //Custom selectors
+            sectionSelector: '.section',
+            slideSelector: '.slide',
+
+            //events
+            onLeave: function(index, nextIndex, direction){},
+            afterLoad: function(anchorLink, index){},
+            afterRender: function(){},
+            afterResize: function(){},
+            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+            onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
+        });
+    }
+});
+
+new Vue({
+    el: '#skills',
+
+    data: {
+    	title:'skills',
+    	
+        chart: null,
+
+        chartHeight: 400,
+        shouldOffset: false,
+
+        curTab: null,
+
+        tabs: {
+            frontend:  ['frontend'],
+            backend:   ['backend'],
+            language:  ['language'],
+            tool:      ['tool'],
+            framework: ['framework'],
+            database:  ['database'],
+            IDE:       ['IDE'],
+            dataviz:   ['dataviz']
+        },
+
+        skills: [
+            { name: 'JavaScript',    level: 8, tag: ['frontend', 'language'] },
+            { name: 'Java',          level: 8, tag: ['backend', 'language'] },
+            { name: 'HTML',          level: 7, tag: ['frontend', 'language'] },
+            { name: 'CSS',           level: 7, tag: ['frontend', 'language'] },
+            { name: 'C++',           level: 4, tag: ['backend', 'language'] },
+            { name: 'Jade',          level: 6, tag: ['frontend', 'language'] },
+            { name: 'SCSS',          level: 6, tag: ['frontend', 'language'] },
+
+            { name: 'AngularJS',     level: 8, tag: ['frontend', 'framework'] },
+            { name: 'Vue.js',        level: 4, tag: ['frontend', 'framework'] },
+            { name: 'jQuery',        level: 6, tag: ['frontend', 'framework'] },
+            { name: 'Foundation',    level: 4, tag: ['frontend', 'framework'] },
+            { name: 'Bootstrap',     level: 3, tag: ['frontend', 'framework'] },
+            { name: 'D3.js',         level: 3, tag: ['frontend', 'framework', 'dataviz'] },
+            { name: 'Highcharts',    level: 3, tag: ['frontend', 'framework', 'dataviz'] },
+
+            { name: 'Node.js',       level: 4, tag: ['backend', 'framework'] },
+            { name: 'Express',       level: 7, tag: ['backend', 'framework'] },
+            { name: 'Spring',        level: 2, tag: ['backend', 'framework'] },
+            { name: 'Hibernate',     level: 5, tag: ['backend', 'framework'] },
+
+            { name: 'MongoDB',       level: 7, tag: ['backend', 'database'] },
+            { name: 'MySQL',         level: 5, tag: ['backend', 'database'] },
+            { name: 'SQLite',        level: 4, tag: ['backend', 'database'] },
+            { name: 'SQL Server',    level: 3, tag: ['backend', 'database'] },
+
+            { name: 'Grunt',         level: 6, tag: ['frontend', 'tool'] },
+            { name: 'Bower',         level: 7, tag: ['frontend', 'tool'] },
+            { name: 'npm',           level: 7, tag: ['frontend', 'backend', 'tool'] },
+            { name: 'Git',           level: 7, tag: ['tool'] },
+
+            { name: 'WebStorm',      level: 8, tag: ['IDE'] },
+            { name: 'Eclipse',       level: 7, tag: ['IDE'] },
+            { name: 'Visual Studio', level: 6, tag: ['IDE'] },
+            { name: 'Vim',           level: 3, tag: ['IDE'] }
+        ],
+
+        switchButtons: [
+            { english: 'frontend', chinese: '前端技能' },
+            { english: 'backend', chinese: '后端技能' },
+            { english: 'language', chinese: '编程语言' },
+            { english: 'database', chinese: '数据库' },
+            { english: 'tool', chinese: '开发工具' }
+        ]
+    },
+
+    watch: {
+    },
+
+    methods: {
+        switch: function (tab, event) {
+            this.curTab = tab;
+            $(event.target).blur();
+        }
+    },
+
+    ready: function () {
+        var self = this;
+
+        self.shouldOffset = window.innerWidth <= 450;
+
+        $(window).resize(function () {
+            self.shouldOffset = window.innerWidth <= 450;
+            var filtered = self.skills
+                .filter(function (skill) {
+                    return skill.tag.indexOf(self.curTab) !== -1;
+                });
+            if (window.innerWidth <= 768) {
+                if (filtered.length < 5) {
+                    self.chart.setSize(window.innerWidth * 0.9, window.innerHeight * 0.3, true);
+                }
+                else if (filtered.length < 8) {
+                    self.chart.setSize(window.innerWidth * 0.9, window.innerHeight * 0.4, true);
+                }
+                else {
+                    self.chart.setSize(window.innerWidth * 0.9, window.innerHeight * 0.6, true);
+                }
+            }
+            else {
+                self.shouldOffset = false;
+                if (filtered.length < 5) {
+                    self.chart.setSize(500, window.innerHeight * 0.3, true);
+                }
+                else if (filtered.length < 8) {
+                    self.chart.setSize(500, window.innerHeight * 0.4, true);
+                }
+                else {
+                    self.chart.setSize(500, window.innerHeight * 0.6, true);
+                }
+            }
+        });
+
+        self.$watch('curTab', function (val) {
+            var filtered = self.skills
+                .filter(function (skill) {
+                    return skill.tag.indexOf(val) !== -1;
+                })
+                .sort(function (a, b) {
+                    return b.level - a.level;
+                });
+
+            var cat = [], data = [], max = [];
+            filtered.forEach(function (skill) {
+                cat.push(skill.name);
+                data.push(skill.level);
+                max.push(10);
+            });
+
+            self.chart.xAxis[0].update({
+                categories: cat
+            }, false);
+            self.chart.series[0].update({
+                data: max
+            }, false);
+            self.chart.series[1].update({
+                data: data
+            }, false);
+            self.chart.redraw();
+
+            if (window.innerWidth > 768) {
+                if (filtered.length < 5) {
+                    self.chart.setSize(500, window.innerHeight * 0.3, true);
+                }
+                else if (filtered.length < 8) {
+                    self.chart.setSize(500, window.innerHeight * 0.4, true);
+                }
+                else {
+                    self.chart.setSize(500, window.innerHeight * 0.6, true);
+                }
+            }
+            else {
+                if (filtered.length < 5) {
+                    self.chart.setSize(window.innerWidth * 0.9, window.innerHeight * 0.3, true);
+                }
+                else if (filtered.length < 8) {
+                    self.chart.setSize(window.innerWidth * 0.9, window.innerHeight * 0.4, true);
+                }
+                else {
+                    self.chart.setSize(window.innerWidth * 0.9, window.innerHeight * 0.6, true);
+                }
+            }
+        });
+
+        // Create the chart
+        self.chart = new Highcharts.Chart('skillChart', {
+            chart: {
+                type: 'bar',
+                backgroundColor: '#60BAE3',
+                marginLeft: 80,
+                width: 500,
+                height: 400
+            },
+            title: {
+                text: null
+            },
+            xAxis: {
+                categories: [],
+                title: {
+                    text: null
+                },
+                tickWidth: 0,
+                lineWidth: 0
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: null
+                },
+                labels: {
+                    enabled: false
+                },
+                gridLineWidth: 0
+            },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                bar: {
+                    grouping: false,
+                    borderWidth: 1,
+                    borderColor: '#DBF4FF',
+                    pointWidth: 10,
+                    pointRange: 10,
+                    dataLabels: {
+                        enabled: false
+                    }
+                },
+                series: {
+                    states: {
+                        hover: {
+                            enabled: false
+                        }
+                    }
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: 'background',
+                    data: [],
+                    color: '#60BAE3',
+                    borderRadius: 5
+                },
+                {
+                    name: 'level',
+                    data: [],
+                    color: '#DBF4FF',
+                    borderRadius: 5
+                }
+            ]
+        });
+
+        this.curTab = 'frontend';
+    }
+});
+
+
+new Vue({
+    el: '#experiences',
+
+    data: {
+        expArray: [
+            {
+                title: '阿里巴巴 云OS事业部',
+                subject: '前端开发实习生',
+                duration: '2016.06 - 2016.08',
+                description: '参与云OS应用开发框架2.0的研发'
+            },
+            {
+                title: 'Keosys 全栈工程师',
+                subject: '企业合作项目:社区网站搭建',
+                duration: '2015.10 - 2016。05',
+                description: '开发一个在线学习社区的原型网站'
+            },
+            {
+                title: 'Hyblab 前端工程师',
+                subject: '校际合作项目:数据可视化',
+                duration: '2016.01',
+                description: '开发了一个可交互式地图'
+            },
+            {
+                title: '金蝶 云之家事业部',
+                subject: '软件开发实习生',
+                duration: '2014.07 - 2014.09'
+            }
+        ]
+    }
+});
+
+
+
+
+new Vue({
+    el: '#educations',
+
+    data: {
+        eduArray: [
+            {
+                school: '法国南特大学',
+                degree: '计算机科学 在读硕士',
+                duration: '2015.09 - 2017.07'
+            },
+            {
+                school: '华南理工大学',
+                degree: '软件工程 本科',
+                duration: '2011.09 - 2015.07'
+            }
+        ]
+    }
+})

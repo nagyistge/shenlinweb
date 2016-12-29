@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A visualization of global car characteristics between 1970 and 1982</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="src/tendence.css">
+    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" href="src/bootstrap-light.css">
+</head>
+<body onload="init()">
+    <header>
+        <div class="container">
+            <h1 style="text-align: center;">A visualization of global car characteristics between 1970 and 1982</h1>
+        </div>
+        <p>
+            The data that we visualize here is the Auto MPG Data Set which contains 398 automobile records from 1970 to 1982 of
+            US, Japan and Europe.
+            Each car is described by its model, region of production, year of production and 6 attributes: MPG (miles per
+            gallon), number of cylinders, displacement, horsepower, weight, acceleration.
+        </p>
+    </header>
+
+    <!-- Trends -->
+    <section>
+        <h2>
+           I. &nbsp Below shows the evolution of each characteristic of car in each region along the years.
+        </h2>
+        <div id="container"></div>
+        <div id="btn-group"></div>
+    </section>
+
+    <!-- Piechart -->
+    <section>
+        <h2>
+           II. &nbsp Below shows the proportion of brands of cars produced in each origin.
+        </h2>
+        <div id="piechart" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+    </section>
+
+    <!-- Correlation -->
+    <section>
+        <h2>
+            III. &nbsp Below shows the correlation between the six attributes.<br>
+            <strong>Clicking</strong> on one of the graph shows a bigger detailed scatter
+            plot.
+        </h2>
+        <div class="correlationChartContainer center-block">
+            <table id="correlationTable">
+                <tbody id="correlationMatrix"></tbody>
+            </table>
+            <div id="bigCorrelation"></div>
+        </div>
+    </section>
+
+</body>
+<!--<script src="js/echarts.js"></script>-->
+<script src="data/cars.js"></script>
+<script src="src/correlation.js"></script>
+<script src="src/tendence.js"></script>
+<script src="src/piechart.js"></script>
+<script>
+    function init() {
+        scatterPlot();
+        drawPieChart();
+    }
+</script>
+</html>
+
