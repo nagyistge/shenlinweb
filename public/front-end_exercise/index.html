@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wrike</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!--Bootstrap script-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!--self define script-->
+    <link href="./styles/index.css" rel="stylesheet">
+
+    <!--jQuery script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--Bootstrap script -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<!--This document is composed by 3 parts : navigation bar, titles, main content -->
+<!--1 navigation bar-->
+<nav class="row navbar-inner col-md-8 col-md-offset-2" id="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="./images/wrike.svg">
+            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#free" id="freeMenu">Free</a></li>
+                <li><a href="#profession" id="professionMenu">Profession</a></li>
+                <li><a href="#enterprise" id="enterpriseMenu">Enterprise</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!--2 titles-->
+<div class="container-fluid" id="titles">
+    <div class="row col-md-6 col-md-offset-3 title">Get started with Wrike</div>
+    <div class="row col-md-6 col-md-offset-3">
+        <div class="line col-md-3 col-xs-4"></div>
+        <div class="subtitle col-md-6 col-xs-4">Plans available for every team</div>
+        <div class="line col-md-3 col-xs-4"></div>
+    </div>
+</div>
+
+<!--3 main content-->
+<div class="container-fluid" id="mainContent">
+    <div class="row col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+
+        <!--arrow part-->
+        <div class="col-md-3 col-sm-12 col-xs-12" id="arrow">
+            <div>Subscription</div>
+            <div>Select the plan for you</div>
+            <img alt="Brand" src="./images/arrow_lg.png">
+        </div>
+
+        <!-- Free board -->
+        <div class="col-md-3 col-sm-12 col-xs-12" id="free">
+            <div class="board">
+                <div class="title">Free</div>
+                <div class="description">For small teams who need basic management</div>
+                <div class="content">
+                    <div class="user">5 Users</div>
+                    <div class="price">Free</div>
+                </div>
+                <div class="button btn">Sign up now <span class="glyphicon glyphicon-chevron-right"
+                                                          aria-hidden="true"></span></div>
+            </div>
+        </div>
+
+        <!-- Profession board -->
+        <div class="col-md-3 col-sm-12 col-xs-12" id="profession">
+            <div class="board">
+                <div class="title">Professional</div>
+                <div class="description">For teams who need project planning and collaboration</div>
+                <div class="content">
+                    <p>Paid annually</p>
+                    <div class="text-group">
+                        <div class="user">5 Users</div>
+                        <div class="price">$49/mo</div>
+                    </div>
+                    <div class="text-group">
+                        <div class="user">15 Users</div>
+                        <div class="price">$49/mo</div>
+                    </div>
+                </div>
+                <div class="button btn">Start free trial <span class="glyphicon glyphicon-chevron-right"
+                                                               aria-hidden="true"></span></div>
+            </div>
+        </div>
+
+        <!-- Enterprise board -->
+        <div class="col-md-3 col-sm-12 col-xs-12" id="enterprise">
+            <div class="board">
+                <div class="title">Enterprise</div>
+                <div class="description">For teams who need customization, reporting and advanced security</div>
+                <div class="content">
+                    <p>From 5 to <strong>thousands</strong> of users</p>
+                </div>
+                <div class="button btn">Start free trial <span class="glyphicon glyphicon-chevron-right"
+                                                               aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end of main cont-->
+
+</body>
+<script src="./js/index.js"></script>
+</html>
+
